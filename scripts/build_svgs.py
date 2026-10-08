@@ -212,8 +212,8 @@ def hero():
     out.append(g)
 
     # Intro and typed line.
-    for j, ln in enumerate(["I build machine-learning models and AI products", "where data drives decisions with real financial impact."]):
-        out.append(sans(32, 398 + 22 * j, ln, 16, .8))
+    out.append(sans(32, 398, "I build cool stuff with AI agents. Sometimes it's even useful.", 17, 1, weight=700))
+    out.append(sans(32, 422, "Risk models, recommenders, a DJ copilot, a finance bot that talks back.", 15, .6))
     tx = 32 + mono_w("> ", 15)
     out.append(mono(32, 470, ">", 15, .6))
     for i, ph in enumerate(PHRASES):

@@ -1,4 +1,4 @@
-<img src="assets/hero.svg" width="100%" alt="Gianluca Bavelloni. MSc Business Analytics and AI, Switzerland. I build machine-learning models and AI products where data drives decisions with real financial impact.">
+<img src="assets/hero.svg" width="100%" alt="Gianluca Bavelloni. MSc Business Analytics and AI, Switzerland. I build cool stuff with AI agents. Sometimes it's even useful. Risk models, recommenders, a DJ copilot, a finance bot that talks back.">
 
 <p align="center">
   <img src="https://img.shields.io/badge/PYTHON-000000?style=for-the-badge&logo=python&logoColor=white" alt="Python">
