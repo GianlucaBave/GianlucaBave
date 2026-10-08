@@ -19,6 +19,8 @@
 <tr>
 <td width="50%" valign="top">
 
+<a href="https://github.com/GianlucaBave/final-data-finance"><img src="assets/shots/credit.jpg" width="100%" alt="Credit Decision: score progression across submissions"></a>
+
 #### [CREDIT DECISION](https://github.com/GianlucaBave/final-data-finance)
 `// #1 PUBLIC LEADERBOARD`<br>
 Personal-loan approval model for the ESADE Kaggle competition. Tied first at 0.8565 accuracy after catching a planted target leak.<br>
@@ -26,6 +28,8 @@ Personal-loan approval model for the ESADE Kaggle competition. Tied first at 0.8
 
 </td>
 <td width="50%" valign="top">
+
+<a href="https://github.com/dacobri/fynn-talk-to-your-finances"><img src="assets/shots/fynn.jpg" width="100%" alt="Fynn dashboard with the finance copilot chat"></a>
 
 #### [FYNN](https://github.com/dacobri/fynn-talk-to-your-finances)
 `// TEAM PROJECT`<br>
@@ -37,6 +41,8 @@ AI copilot for personal finance: a Claude agent answers money questions with liv
 <tr>
 <td width="50%" valign="top">
 
+<a href="https://tunescape.vercel.app"><img src="assets/shots/tunescape.jpg" width="100%" alt="Tunescape artist map with recommendations"></a>
+
 #### [TUNESCAPE](https://github.com/GianlucaBave/tunescape) · [demo](https://tunescape.vercel.app)
 `// RECOMMENDER SYSTEMS`<br>
 Interactive atlas of 15,350 artists comparing 8 recommender algorithms side by side on one map.<br>
@@ -44,6 +50,8 @@ Interactive atlas of 15,350 artists comparing 8 recommender algorithms side by s
 
 </td>
 <td width="50%" valign="top">
+
+<a href="https://dj-assistant-streamlit.vercel.app"><img src="assets/shots/crowdloop.jpg" width="100%" alt="CrowdLoop AI DJ dashboard"></a>
 
 #### [CROWDLOOP AI](https://github.com/GianlucaBave/DJ_Assistant_streamlit) · [demo](https://dj-assistant-streamlit.vercel.app)
 `// AGENTIC AI`<br>
@@ -55,6 +63,8 @@ DJ copilot: a Claude agent drives the deck through tool use over a RAG-indexed t
 <tr>
 <td width="50%" valign="top">
 
+<a href="https://github.com/GianlucaBave/Final-Advanced-Python-Project"><img src="assets/shots/iphone.jpg" width="100%" alt="iPhone Deal-Finder CLI output"></a>
+
 #### [IPHONE DEAL-FINDER](https://github.com/GianlucaBave/Final-Advanced-Python-Project)
 `// PRICING MODEL`<br>
 Fair-value model for second-hand iPhones on 13,745 price records, 8,262 scraped live, with a buy / hold / skip call.<br>
@@ -62,6 +72,8 @@ Fair-value model for second-hand iPhones on 13,745 price records, 8,262 scraped 
 
 </td>
 <td width="50%" valign="top">
+
+<a href="https://seminar-challenge.vercel.app"><img src="assets/shots/cvfit.jpg" width="100%" alt="CV Job Fit Checker landing page"></a>
 
 #### [CV JOB FIT CHECKER](https://github.com/GianlucaBave/Seminar-challenge) · [demo](https://seminar-challenge.vercel.app)
 `// LLM TOOL`<br>
@@ -73,6 +85,8 @@ Scores a CV against a job offer and suggests how to tailor it.<br>
 <tr>
 <td width="50%" valign="top">
 
+<a href="https://startup-uni.vercel.app"><img src="assets/shots/unirocket.jpg" width="100%" alt="Unirocket landing page"></a>
+
 #### UNIROCKET · [demo](https://startup-uni.vercel.app)
 `// SAAS · CODE PRIVATE`<br>
 Platform for student founders: find teammates, pitch ideas, raise funds and watch the market with a built-in radar.<br>
@@ -80,6 +94,8 @@ Platform for student founders: find teammates, pitch ideas, raise funds and watc
 
 </td>
 <td width="50%" valign="top">
+
+<a href="https://artsync-pi.vercel.app"><img src="assets/shots/artsync.jpg" width="100%" alt="ArtSync landing page"></a>
 
 #### [ARTSYNC](https://github.com/GianlucaBave/artsync) · [demo](https://artsync-pi.vercel.app)
 `// PROTOTYPE`<br>
