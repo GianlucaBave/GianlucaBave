@@ -41,7 +41,7 @@ AI copilot for personal finance: a Claude agent answers money questions with liv
 <tr>
 <td width="50%" valign="top">
 
-<a href="https://tunescape.vercel.app"><img src="assets/shots/tunescape.jpg" width="100%" alt="Tunescape artist map with recommendations"></a>
+<a href="https://tunescape.vercel.app"><img src="assets/shots/tunescape-v2.jpg" width="100%" alt="Tunescape artist map with recommendations"></a>
 
 #### [TUNESCAPE](https://github.com/GianlucaBave/tunescape) · [demo](https://tunescape.vercel.app)
 `// RECOMMENDER SYSTEMS`<br>
