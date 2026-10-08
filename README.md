@@ -1,51 +1,88 @@
-<h1 align="center">Gianluca Bavelloni</h1>
-<p align="center"><b>MSc Business Analytics & AI</b> · Switzerland</p>
-<p align="center">
-I build machine-learning models and AI products where data drives decisions with real financial impact:<br>
-credit and fraud risk, pricing, recommender systems and LLM agents.
-</p>
+<img src="assets/hero.svg" width="100%" alt="Gianluca Bavelloni. MSc Business Analytics and AI, Switzerland. I build machine-learning models and AI products where data drives decisions with real financial impact.">
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/SQL-4479A1?logo=postgresql&logoColor=white" alt="SQL">
-  <img src="https://img.shields.io/badge/scikit--learn-F7931E?logo=scikitlearn&logoColor=white" alt="scikit-learn">
-  <img src="https://img.shields.io/badge/XGBoost%20·%20LightGBM%20·%20CatBoost-2E7D32" alt="Gradient boosting">
-  <img src="https://img.shields.io/badge/Claude%20API-D97757?logo=anthropic&logoColor=white" alt="Claude API">
-  <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
-  <img src="https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white" alt="Next.js">
-  <img src="https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white" alt="FastAPI">
-  <img src="https://img.shields.io/badge/Power%20BI-F2C811?logo=powerbi&logoColor=black" alt="Power BI">
+  <img src="https://img.shields.io/badge/PYTHON-000000?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/SQL-000000?style=for-the-badge&logo=postgresql&logoColor=white" alt="SQL">
+  <img src="https://img.shields.io/badge/SCIKIT--LEARN-000000?style=for-the-badge&logo=scikitlearn&logoColor=white" alt="scikit-learn">
+  <img src="https://img.shields.io/badge/XGBOOST%20·%20LIGHTGBM-000000?style=for-the-badge" alt="XGBoost, LightGBM">
+  <img src="https://img.shields.io/badge/CLAUDE%20API-000000?style=for-the-badge&logo=anthropic&logoColor=white" alt="Claude API">
+  <img src="https://img.shields.io/badge/TYPESCRIPT-000000?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/NEXT.JS-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js">
+  <img src="https://img.shields.io/badge/FASTAPI-000000?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
 </p>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/roadmap-dark.svg">
-  <img alt="Project roadmap: nine projects from October 2025 to June 2026 across AI products, web and data visualisation, and machine learning for risk and pricing, with lines linking projects that share technology." src="assets/roadmap-light.svg" width="100%">
-</picture>
+<img src="assets/roadmap.svg" width="100%" alt="Project roadmap: nine projects from October 2025 to June 2026 across AI products, web and data visualisation, and machine learning for risk and pricing, with lines linking projects that share technology.">
 
-### Projects
+### `( SELECTED WORK )`
 
-| Project | What it does | Stack |
-|---|---|---|
-| **[Credit Decision](https://github.com/GianlucaBave/final-data-finance)** | Personal-loan approval model; **tied #1** on the public leaderboard of the ESADE Kaggle competition (0.8565 accuracy), after catching a planted target leak | CatBoost, LightGBM, XGBoost |
-| **[Fynn](https://github.com/dacobri/fynn-talk-to-your-finances)** · team project | AI copilot for personal finance: a Claude agent answers money questions with live SQL and charts over all your bank accounts | Next.js, FastAPI, LangChain, Claude |
-| **[Tunescape](https://github.com/GianlucaBave/tunescape)** · [demo](https://tunescape.vercel.app) | Interactive atlas of 15,350 artists comparing 8 recommender algorithms side by side | Python, Next.js, deck.gl |
-| **[CrowdLoop AI](https://github.com/GianlucaBave/DJ_Assistant_streamlit)** · [demo](https://dj-assistant-streamlit.vercel.app) | Agentic DJ copilot: a Claude agent drives the deck via tool use over a RAG-indexed track library | Claude API, RAG, Web Audio |
-| **[iPhone Deal-Finder](https://github.com/GianlucaBave/Final-Advanced-Python-Project)** | Fair-value model for second-hand iPhones on 13,745 price records (8,262 scraped live) with a buy / hold / skip call | Python, scraping, LightGBM |
-| **[CV Job Fit Checker](https://github.com/GianlucaBave/Seminar-challenge)** · [demo](https://seminar-challenge.vercel.app) | Scores a CV against a job offer and suggests how to tailor it | Node.js, Gemini API |
-| **[ArtSync](https://github.com/GianlucaBave/artsync)** · [demo](https://artsync-pi.vercel.app) | Prototype marketplace for art commissions with a generative-AI concept preview | Next.js, Tailwind |
+<table>
+<tr>
+<td width="50%" valign="top">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/techmap-dark.svg">
-  <img alt="Technology map: a grid of tools by project showing the shared foundations, Python and gradient boosting across the machine-learning projects, Next.js and Vercel across the web projects, and the Claude API across the agents." src="assets/techmap-light.svg" width="100%">
-</picture>
+#### [CREDIT DECISION](https://github.com/GianlucaBave/final-data-finance)
+`// #1 PUBLIC LEADERBOARD`<br>
+Personal-loan approval model for the ESADE Kaggle competition. Tied first at 0.8565 accuracy after catching a planted target leak.<br>
+`CATBOOST` `LIGHTGBM` `XGBOOST`
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/career-dark.svg">
-  <img alt="Career timeline 2021 to 2026: BA in Economics at USI Lugano, MSc in Business Analytics at ESADE, and roles at Neptun, HMY Group, Fineco Bank and Global Payments." src="assets/career-light.svg" width="100%">
-</picture>
+</td>
+<td width="50%" valign="top">
+
+#### [FYNN](https://github.com/dacobri/fynn-talk-to-your-finances)
+`// TEAM PROJECT`<br>
+AI copilot for personal finance: a Claude agent answers money questions with live SQL and charts over every bank account.<br>
+`NEXT.JS` `FASTAPI` `LANGCHAIN` `CLAUDE`
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+#### [TUNESCAPE](https://github.com/GianlucaBave/tunescape) · [demo](https://tunescape.vercel.app)
+`// RECOMMENDER SYSTEMS`<br>
+Interactive atlas of 15,350 artists comparing 8 recommender algorithms side by side on one map.<br>
+`PYTHON` `NEXT.JS` `DECK.GL`
+
+</td>
+<td width="50%" valign="top">
+
+#### [CROWDLOOP AI](https://github.com/GianlucaBave/DJ_Assistant_streamlit) · [demo](https://dj-assistant-streamlit.vercel.app)
+`// AGENTIC AI`<br>
+DJ copilot: a Claude agent drives the deck through tool use over a RAG-indexed track library.<br>
+`CLAUDE API` `RAG` `WEB AUDIO`
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+#### [IPHONE DEAL-FINDER](https://github.com/GianlucaBave/Final-Advanced-Python-Project)
+`// PRICING MODEL`<br>
+Fair-value model for second-hand iPhones on 13,745 price records, 8,262 scraped live, with a buy / hold / skip call.<br>
+`PYTHON` `SCRAPING` `LIGHTGBM`
+
+</td>
+<td width="50%" valign="top">
+
+#### [CV JOB FIT CHECKER](https://github.com/GianlucaBave/Seminar-challenge) · [demo](https://seminar-challenge.vercel.app)
+`// LLM TOOL`<br>
+Scores a CV against a job offer and suggests how to tailor it.<br>
+`NODE.JS` `GEMINI API`<br><br>
+
+#### [ARTSYNC](https://github.com/GianlucaBave/artsync) · [demo](https://artsync-pi.vercel.app)
+`// PROTOTYPE`<br>
+Marketplace for art commissions with a generative-AI concept preview.<br>
+`NEXT.JS` `TAILWIND`
+
+</td>
+</tr>
+</table>
+
+<img src="assets/techmap.svg" width="100%" alt="Technology map: a grid of tools by project showing the shared foundations, Python and gradient boosting across the machine-learning projects, Next.js and Vercel across the web projects, and the Claude API across the agents.">
+
+<img src="assets/career.svg" width="100%" alt="Career timeline 2021 to 2026: BA in Economics at USI Lugano, MSc in Business Analytics at ESADE, and roles at Neptun, HMY Group, Fineco Bank and Global Payments.">
 
 <details>
-<summary><b>Experience and education in detail</b></summary>
+<summary><code>( EXPERIENCE AND EDUCATION IN DETAIL )</code></summary>
 
 **Global Payments**, Risk Analyst, graduate project · Barcelona · 2026  
 Predictive ML model on 470k+ merchants to automate fraud and default detection, with transactional features such as chargeback ratios and insolvency indicators.
@@ -66,3 +103,5 @@ Machine Learning, Cloud Computing, Big Data, AI-driven decision-making
 Thesis 9/10 · DCF Valuation 9.5/10 · Advanced Statistics 9.5/10
 
 </details>
+
+<img src="assets/footer.svg" width="100%" alt="Gianluca Bavelloni">
