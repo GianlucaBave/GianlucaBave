@@ -360,7 +360,7 @@ def ascii_punk(x0, y0, cols, rows, size=9, line=7.9, seed=11):
 # ---------------------------------------------------------------- hero
 
 PHRASES = ["training risk models", "shipping LLM agents", "mapping 15,350 artists", "hunting target leaks"]
-STATS = [("10", "PROJECTS"), ("#1", "KAGGLE PUBLIC LB"), ("15,350", "ARTISTS MAPPED"), ("470K", "MERCHANTS SCORED")]
+STATS = [("09", "PROJECTS"), ("#1", "KAGGLE PUBLIC LB"), ("15,350", "ARTISTS MAPPED"), ("470K", "MERCHANTS SCORED")]
 
 
 def hero():
@@ -380,34 +380,34 @@ def hero():
                 f".ty{i} {{ transform-box: fill-box; transform-origin: left center; animation: ty{i} {cycle:.1f}s steps({n}) infinite; animation-delay: {slot*i:.1f}s; }}",
                 f".cu{i} {{ animation: cu{i} {cycle:.1f}s steps({n}) infinite; animation-delay: {slot*i:.1f}s; }}",
                 f".ph{i} {{ animation-delay: {slot*i:.1f}s; }}"]
-    out = [svg_open(W, H, "Gianluca Bavelloni, MSc Business Analytics and AI", "\n  ".join(css))]
+    out = [svg_open(W, H, "BAVE, builder of AI agents", "\n  ".join(css))]
 
     # Top bar.
-    out.append(mono(32, 40, "GIANLUCABAVE", 12, 1, weight=700))
-    out.append(mono(W / 2, 40, "( PORTFOLIO · CV )", 12, .6, anchor="middle"))
-    bw = mono_w("# SWITZERLAND", 12) + 28
+    out.append(mono(32, 40, "BAVE", 12, 1, weight=700))
+    out.append(mono(W / 2, 40, "( PORTFOLIO )", 12, .6, anchor="middle"))
+    bw = mono_w("# AI · ML · DATA", 12) + 28
     out.append(f'<rect x="{W - 32 - bw:.1f}" y="22" width="{bw:.1f}" height="28" fill="{WHITE}"/>'
-               + mono(W - 32 - bw / 2, 40.5, "# SWITZERLAND", 12, 1, anchor="middle", weight=700, fill=BLACK))
+               + mono(W - 32 - bw / 2, 40.5, "# AI · ML · DATA", 12, 1, anchor="middle", weight=700, fill=BLACK))
     out.append(hairline(32, 66, W - 32, 66))
 
-    # ASCII punk with a moving scan band.
+    # ASCII figure with a moving scan band.
     ox, oy, cols, rows = 604, 100, 60, 48
-    out.append(ascii_punk(ox, oy, cols, rows, size=9, line=7.9))
+    out.append(ascii_seraph(ox, oy, cols, rows, size=9, line=7.9))
     out.append(f'<defs><linearGradient id="band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{WHITE}" stop-opacity="0"/>'
                f'<stop offset=".5" stop-color="{WHITE}" stop-opacity=".05"/><stop offset="1" stop-color="{WHITE}" stop-opacity="0"/></linearGradient></defs>'
                f'<rect class="scan" x="{ox - 6}" y="{oy - 14}" width="{cols * 5.4 + 12:.1f}" height="44" fill="url(#band)"/>')
-    out.append(mono(ox, oy + rows * 7.9 + 8, "// RENDER: PUNK.TXT  ·  60×48", 10, .45))
+    out.append(mono(ox, oy + rows * 7.9 + 8, "// RENDER: SERAPH.TXT  ·  60×48", 10, .45))
 
     # Name: blackletter first name, condensed display surname with glitch.
-    gd, _ = type_path("goth", "Gianluca", 96, 30, 196)
-    out.append(mono(32, 104, "# 01   MSC BUSINESS ANALYTICS & AI", 12, .8))
+    gd, _ = type_path("goth", "Builder of Agents", 50, 32, 158)
+    out.append(mono(32, 104, "# 01   AGENTS · MODELS · DATA PRODUCTS", 12, .8))
     out.append(f'<path d="{gd}" fill="{WHITE}"/>')
-    g, _ = glitch_text("display", "BAVELLONI", 136, 30, 352, tracking=1, ident="surname")
+    g, _ = glitch_text("display", "BAVE", 214, 26, 370, tracking=2, ident="surname")
     out.append(g)
 
     # Intro and typed line.
-    out.append(sans(32, 398, "I build cool stuff with AI agents. Sometimes it's even useful.", 17, 1, weight=700))
-    out.append(sans(32, 422, "Risk models, recommenders, a DJ copilot, a finance bot that talks back.", 15, .6))
+    out.append(sans(32, 408, "I build cool stuff with AI agents. Sometimes it's even useful.", 17, 1, weight=700))
+    out.append(sans(32, 432, "Risk models, recommenders, a DJ copilot, a finance bot that talks back.", 15, .6))
     tx = 32 + mono_w("> ", 15)
     out.append(mono(32, 470, ">", 15, .6))
     for i, ph in enumerate(PHRASES):
@@ -434,37 +434,33 @@ LANES = [("ai", "AI PRODUCTS & LLM AGENTS"), ("web", "WEB & DATA VISUALISATION")
 
 # Chronological order. "col" is the station column; projects in different lanes may share one.
 PROJECTS = [
-    dict(key="portfolio", name="AI Portfolio", date="OCT 2025", lane="web", col=0,
-         tech=["Node·Express", "LLM chat", "Vercel"]),
-    dict(key="unirocket", name="Unirocket", date="NOV 2025", lane="web", col=1, tag="LIVE DEMO",
+    dict(key="unirocket", name="Unirocket", date="NOV 2025", lane="web", col=0, tag="LIVE DEMO",
          tech=["Next.js", "Supabase", "Stripe·OAuth"]),
-    dict(key="artsync", name="ArtSync", date="JAN 2026", lane="web", col=2,
+    dict(key="artsync", name="ArtSync", date="JAN 2026", lane="web", col=1,
          tech=["Next.js·React", "Tailwind", "GenAI preview"]),
-    dict(key="cvfit", name="CV Job Fit Checker", date="JAN 2026", lane="ai", col=2,
+    dict(key="cvfit", name="CV Job Fit Checker", date="JAN 2026", lane="ai", col=1,
          tech=["Node.js", "Gemini API", "PDF parsing"]),
-    dict(key="crowdloop", name="CrowdLoop AI", date="FEB 2026", lane="ai", col=3,
+    dict(key="crowdloop", name="CrowdLoop AI", date="FEB 2026", lane="ai", col=2,
          tech=["Next.js", "Claude agent", "RAG·Web Audio"]),
-    dict(key="fynn", name="Fynn", date="APR 2026", lane="ai", col=4, tag="TEAM PROJECT",
+    dict(key="fynn", name="Fynn", date="APR 2026", lane="ai", col=3, tag="TEAM PROJECT",
          tech=["Claude·SQL", "FastAPI", "LightGBM"]),
-    dict(key="risk", name="Merchant Risk Scoring", date="APR 2026", lane="ml", col=4, tag="PRIVATE·NDA",
+    dict(key="risk", name="Merchant Risk Scoring", date="APR 2026", lane="ml", col=3, tag="PRIVATE·NDA",
          tech=["XGBoost", "SHAP", "470k merchants"]),
-    dict(key="credit", name="Credit Decision", date="JUN 2026", lane="ml", col=5, tag="#1 PUBLIC LB",
+    dict(key="credit", name="Credit Decision", date="JUN 2026", lane="ml", col=4, tag="#1 PUBLIC LB",
          tech=["CatBoost", "LightGBM", "XGBoost"]),
-    dict(key="iphone", name="iPhone Deal-Finder", date="JUN 2026", lane="ml", col=6,
+    dict(key="iphone", name="iPhone Deal-Finder", date="JUN 2026", lane="ml", col=5,
          tech=["Scraping", "LightGBM", "13.7k prices"]),
-    dict(key="tunescape", name="Tunescape", date="JUN 2026", lane="web", col=7,
+    dict(key="tunescape", name="Tunescape", date="JUN 2026", lane="web", col=6,
          tech=["8 recommenders", "Next.js", "deck.gl"]),
 ]
 
 # (from, to, label, label position override or None)
 LINKS = [
-    ("portfolio", "cvfit", "NODE.JS·LLM", (110, 290)),
-    ("portfolio", "unirocket", "VERCEL", None),
     ("unirocket", "artsync", "NEXT.JS", None),
     ("artsync", "tunescape", "NEXT.JS·REACT", (790, 372)),
     ("cvfit", "crowdloop", "GEMINI→CLAUDE", None),
     ("crowdloop", "fynn", "CLAUDE AGENTS", None),
-    ("fynn", "risk", "TRANSACTIONS", (536, 492)),
+    ("fynn", "risk", "TRANSACTIONS", (480, 492)),
     ("risk", "credit", "RISK·XGBOOST", None),
     ("credit", "iphone", "BOOSTING", None),
     ("iphone", "tunescape", "PYTHON ML", (700, 492)),
@@ -482,14 +478,14 @@ def label_box(x, y, s, size=9.5, inverted=False):
 def roadmap():
     W, H = 960, 810
     lane_y = {"ai": 194, "web": 394, "ml": 594}
-    pos = {p["key"]: (72 + 116 * p["col"], lane_y[p["lane"]]) for p in PROJECTS}
+    pos = {p["key"]: (90 + 130 * p["col"], lane_y[p["lane"]]) for p in PROJECTS}
     lane_of = {p["key"]: p["lane"] for p in PROJECTS}
     out = [svg_open(W, H, "Project roadmap: nine projects and the technology they share"),
            section_header("01 · PROJECT ROADMAP", "From analytics to AI products",
-                          "Ten projects, Oct 2025 to Jun 2026. Lines link projects that share technology or domain.", "R", W)]
+                          "Nine projects, Nov 2025 to Jun 2026. Lines link projects that share technology or domain.", "R", W)]
     for key, label in LANES:
         y = lane_y[key]
-        lx = 566 if key == "web" else 32  # web label sits in the gap between link lines
+        lx = 520 if key == "web" else 32  # web label sits in the gap between link lines
         out.append(hairline(24, y, W - 24, y, .14, "1 4") + mono(lx, y - 18, f"// {label}", 10, .55))
 
     labels = []
@@ -508,7 +504,7 @@ def roadmap():
         x, y = pos[p["key"]]
         name_lines = wrap(p["name"], 13)
         rows = ([(p["tag"], True)] if p.get("tag") else []) + [(t_, False) for t_ in p["tech"]]
-        cw, cx0, cy0 = 112, x - 56, y + 20
+        cw, cx0, cy0 = 120, x - 60, y + 20
         rows_y = cy0 + 34 + 16 * len(name_lines)
         ch = (rows_y - cy0) + 19 * len(rows) + 4
         out.append(f'<rect x="{cx0}" y="{cy0}" width="{cw}" height="{ch}" fill="{WHITE}" fill-opacity=".06" stroke="{WHITE}" stroke-opacity=".16"/>'
@@ -547,7 +543,6 @@ TECH_ROWS = [
         ("Claude API · tool use", {"crowdloop", "fynn"}),
         ("LangChain · text-to-SQL", {"fynn"}),
         ("Gemini API", {"cvfit"}),
-        ("OpenRouter", {"portfolio"}),
         ("RAG · embeddings", {"crowdloop"}),
     ]),
     ("WEB & PRODUCT", [
@@ -556,10 +551,10 @@ TECH_ROWS = [
         ("Supabase · Postgres", {"unirocket"}),
         ("Auth.js · OAuth · Stripe", {"unirocket"}),
         ("FastAPI", {"fynn"}),
-        ("Node.js · Express", {"portfolio", "cvfit"}),
+        ("Node.js · Express", {"cvfit"}),
         ("deck.gl", {"tunescape"}),
         ("Web Audio API", {"crowdloop"}),
-        ("Vercel", {"portfolio", "unirocket", "artsync", "cvfit", "crowdloop", "tunescape"}),
+        ("Vercel", {"unirocket", "artsync", "cvfit", "crowdloop", "tunescape"}),
     ]),
     ("DATA", [
         ("Web scraping", {"iphone"}),
@@ -576,7 +571,7 @@ def techmap():
     rows = sum(len(r) for _, r in TECH_ROWS)
     W, top, rh, gh = 960, 196, 24, 32
     H = top + rows * rh + len(TECH_ROWS) * gh + 40
-    col0, cstep = 258, 58
+    col0, cstep = 262, 64
     cols = {p["key"]: col0 + cstep * i for i, p in enumerate(PROJECTS)}
     out = [svg_open(W, H, "Technology map: which tools each project uses"),
            section_header("02 · TECH MATRIX", "What the projects share",
@@ -600,63 +595,78 @@ def techmap():
                 x = cols[k]
                 out.append(f'<rect x="{x - 4.5}" y="{y + 6}" width="9" height="9" fill="{WHITE}"/>')
             n = len(used)
-            for s in range(6):  # segmented meter
-                out.append(f'<rect x="{W - 140 + s * 14}" y="{y + 6}" width="10" height="9" fill="{WHITE}" fill-opacity="{1 if s < n else .12}"/>')
+            for s in range(5):  # segmented meter
+                out.append(f'<rect x="{W - 132 + s * 14}" y="{y + 6}" width="10" height="9" fill="{WHITE}" fill-opacity="{1 if s < n else .12}"/>')
             out.append(mono(W - 36, y + 15, str(n), 11, 1, anchor="end", weight=700))
             y += rh
     out.append("</svg>")
     return "".join(out)
 
 
-# ---------------------------------------------------------------- career
+# ---------------------------------------------------------------- capabilities
 
-CAREER = [
-    ("EDUCATION", [
-        ("USI Lugano", "BA Economics, Finance major", (2021, 9), (2024, 9), "Thesis 9/10"),
-        ("ESADE", "MSc Business Analytics", (2025, 8), (2026, 6), ""),
+# Each skill lists the projects that show it, so the meter is evidence, not self-rating.
+CAPABILITIES = [
+    ("ML MODELLING", [
+        ("Gradient boosting", {"credit", "risk", "iphone", "fynn"}),
+        ("Feature engineering", {"credit", "risk", "iphone"}),
+        ("Leakage hunting", {"credit", "risk"}),
+        ("Explainability", {"risk"}),
+        ("Recommenders", {"tunescape"}),
     ]),
-    ("EXPERIENCE", [
-        ("Neptun S.r.l.", "Business Operations Associate", (2021, 1), (2025, 5), ""),
-        ("HMY Group", "Project Manager intern", (2024, 9), (2025, 1), ""),
-        ("Fineco Bank", "Private Banking intern", (2025, 5), (2025, 7), ""),
-        ("Global Payments", "Risk Analyst, graduate project", (2026, 2), (2026, 6), ""),
+    ("AI AGENTS", [
+        ("LLM APIs", {"crowdloop", "fynn", "cvfit"}),
+        ("Tool-use agents", {"crowdloop", "fynn"}),
+        ("RAG", {"crowdloop"}),
+        ("Text-to-SQL", {"fynn"}),
+        ("Doc parsing", {"cvfit"}),
+    ]),
+    ("PRODUCT", [
+        ("Next.js · React", {"unirocket", "artsync", "crowdloop", "fynn", "tunescape"}),
+        ("Shipping live", {"unirocket", "artsync", "cvfit", "crowdloop", "tunescape"}),
+        ("APIs", {"cvfit", "fynn"}),
+        ("Data viz", {"tunescape", "fynn", "unirocket"}),
+        ("Auth · payments", {"unirocket"}),
+    ]),
+    ("DATA", [
+        ("Python · pandas", {"credit", "risk", "iphone", "fynn", "tunescape"}),
+        ("Messy data", {"credit", "risk", "iphone"}),
+        ("SQL", {"fynn", "unirocket"}),
+        ("Scraping", {"iphone"}),
+        ("CSV ingestion", {"fynn"}),
+    ]),
+    ("RISK & MONEY", [
+        ("Credit scoring", {"credit"}),
+        ("Fraud · default", {"risk"}),
+        ("Pricing", {"iphone"}),
+        ("Personal finance", {"fynn"}),
+        ("Threshold policy", {"credit", "risk"}),
     ]),
 ]
 
 
-def career():
-    W = 960
-    x0, x1, y0, rh = 270, W - 40, 178, 44
-    span = (2027 - 2021) * 12
-
-    def xm(ym):
-        return x0 + (x1 - x0) * ((ym[0] - 2021) * 12 + ym[1] - 1) / span
-
-    nrows = sum(len(r) for _, r in CAREER)
-    H = y0 + nrows * rh + len(CAREER) * 30 + 34
-    out = [svg_open(W, H, "Career timeline: education and experience 2021 to 2026"),
-           section_header("03 · CAREER LOG", "Finance first, then data and AI",
-                          "Economics in Lugano, operations and risk in Milan, analytics in Barcelona.", "C", W)]
-    for yr in range(2021, 2027):
-        x = xm((yr, 1))
-        out.append(hairline(round(x, 1), y0 - 6, round(x, 1), H - 26, .12, "1 4") + mono(x + 4, y0 - 12, str(yr), 10.5, .55, weight=700))
-    y = y0
-    for gi, (group, items) in enumerate(CAREER):
-        y += 30
-        out.append(mono(32, y - 9, f"( {group} )", 10, .6))
-        for org, role, a, b, note in items:
-            xa, xb = xm(a), xm((b[0] + (b[1] // 12), b[1] % 12 + 1))
-            out.append(sans(32, y + 17, org, 14, 1, weight=700) + sans(32, y + 33, role, 11.5, .55))
-            solid = gi == 0
-            out.append(f'<rect x="{xa:.1f}" y="{y + 8}" width="{max(xb - xa, 10):.1f}" height="22" fill="{WHITE}" '
-                       f'fill-opacity="{1 if solid else .12}" stroke="{WHITE}" stroke-opacity="{0 if solid else .7}"/>')
-            dates = f"{a[1]:02d}/{a[0] % 100:02d} → {b[1]:02d}/{b[0] % 100:02d}"
-            label = f"{dates}  ·  {note}" if note else dates
-            if xb - xa > mono_w(label, 10) + 20:
-                out.append(mono(xa + 10, y + 23, label, 10, 1, weight=700, fill=BLACK if solid else WHITE))
-            else:
-                out.append(mono(xb + 8, y + 23, label, 10, .6))
-            y += rh
+def capabilities():
+    W, top = 960, 172
+    n = len(CAPABILITIES)
+    gap = 10
+    cw = (W - 64 - gap * (n - 1)) / n
+    rows = max(len(items) for _, items in CAPABILITIES)
+    ch = 58 + rows * 40
+    H = int(top + ch + 40)
+    out = [svg_open(W, H, "Capabilities: skills grouped by area, each backed by the projects that use it"),
+           section_header("03 · CAPABILITIES", "What I actually build",
+                          "Skills, each counted by the projects that use it. Evidence, not self-rating.", "C", W)]
+    for i, (title, items) in enumerate(CAPABILITIES):
+        x = 32 + i * (cw + gap)
+        out.append(f'<rect x="{x:.1f}" y="{top}" width="{cw:.1f}" height="{ch}" fill="{WHITE}" fill-opacity=".05" stroke="{WHITE}" stroke-opacity=".16"/>')
+        td, _ = type_path("display", title, 21, x + 12, top + 34, tracking=0.5)
+        out.append(f'<path d="{td}" fill="{WHITE}"/>' + mono(x + 12, top + 50, f"0{i + 1}", 9.5, .45))
+        for j, (label, used) in enumerate(items):
+            y = top + 78 + j * 40
+            out.append(sans(x + 12, y, label, 12.5, .92))
+            for s_ in range(5):
+                out.append(f'<rect x="{x + 12 + s_ * 13:.1f}" y="{y + 8}" width="10" height="8" fill="{WHITE}" fill-opacity="{1 if s_ < len(used) else .14}"/>')
+            out.append(mono(x + 12 + 5 * 13 + 6, y + 15.5, f"{len(used)} PROJ", 9, .5))
     out.append("</svg>")
     return "".join(out)
 
@@ -666,19 +676,19 @@ def career():
 def footer():
     W = 960
     cap = FONTS["display"]["OS/2"].sCapHeight / FONTS["display"]["head"].unitsPerEm
-    size = 100 * (W - 48) / type_width("display", "BAVELLONI", 100, 2)
+    size = min(330, 100 * (W - 48) / type_width("display", "BAVE", 100, 4))
     top = 150
     H = int(top + cap * size * 0.86)          # crop the bottom 14% of the wordmark
     base = top + cap * size
-    out = [svg_open(W, H, "Gianluca Bavelloni")]
+    out = [svg_open(W, H, "BAVE")]
     out.append(hairline(32, 30, W - 32, 30))
-    out.append(mono(32, 58, "( MSC BUSINESS ANALYTICS & AI )", 11, .6)
+    out.append(mono(32, 58, "( AI · ML · DATA PRODUCTS )", 11, .6)
                + mono(W / 2, 58, "† MMXXVI †", 11, .6, anchor="middle")
-               + mono(W - 32, 58, "SWITZERLAND", 11, .6, anchor="end"))
-    gd, _ = type_path("goth", "Gianluca", 58, 32, 128)
+               + mono(W - 32, 58, "SOMETIMES USEFUL", 11, .6, anchor="end"))
+    gd, _ = type_path("goth", "Finis.", 58, 32, 128)
     out.append(f'<path d="{gd}" fill="{WHITE}"/>')
     out.append(mono(W - 32, 126, "END OF FILE_", 11, .6, anchor="end", cls="blink"))
-    g, _ = glitch_text("display", "BAVELLONI", size, W / 2, base, anchor="middle", tracking=2, ident="wordmark")
+    g, _ = glitch_text("display", "BAVE", size, W / 2, base, anchor="middle", tracking=4, ident="wordmark")
     out.append(g)
     out.append("</svg>")
     return "".join(out)
@@ -694,7 +704,7 @@ if __name__ == "__main__":
     for old in OUT.glob("*.svg"):
         old.unlink()
     for name, fn, inverted in (("hero", hero, False), ("roadmap", roadmap, False), ("techmap", techmap, True),
-                               ("career", career, False), ("footer", footer, False)):
+                               ("capabilities", capabilities, False), ("footer", footer, False)):
         # The tech matrix is printed light-on-dark inverted, to give the page a light/dark rhythm.
         WHITE, BLACK = ("#111111", "#ececec") if inverted else ("#ffffff", "#000000")
         (OUT / f"{name}.svg").write_text(fn())

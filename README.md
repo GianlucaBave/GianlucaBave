@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/0c4bfc819187437830b5eeef10bf514803b2ac57/assets/hero.svg" width="100%" alt="Gianluca Bavelloni. MSc Business Analytics and AI, Switzerland. I build cool stuff with AI agents. Sometimes it's even useful. Risk models, recommenders, a DJ copilot, a finance bot that talks back.">
+<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/0c4bfc819187437830b5eeef10bf514803b2ac57/assets/hero.svg" width="100%" alt="BAVE, builder of agents. I build cool stuff with AI agents. Sometimes it's even useful. Risk models, recommenders, a DJ copilot, a finance bot that talks back.">
 
 <p align="center">
   <img src="https://img.shields.io/badge/PYTHON-000000?style=for-the-badge&logo=python&logoColor=white" alt="Python">
@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/badge/FASTAPI-000000?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
 </p>
 
-<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/0c4bfc819187437830b5eeef10bf514803b2ac57/assets/roadmap.svg" width="100%" alt="Project roadmap: ten projects from October 2025 to June 2026 across AI products, web and data visualisation, and machine learning for risk and pricing, with lines linking projects that share technology.">
+<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/0c4bfc819187437830b5eeef10bf514803b2ac57/assets/roadmap.svg" width="100%" alt="Project roadmap: nine projects from November 2025 to June 2026 across AI products, web and data visualisation, and machine learning for risk and pricing, with lines linking projects that share technology.">
 
 ### `( SELECTED WORK )`
 
@@ -23,7 +23,7 @@
 
 #### [CREDIT DECISION](https://github.com/GianlucaBave/final-data-finance)
 `// #1 PUBLIC LEADERBOARD`<br>
-Personal-loan approval model for the ESADE Kaggle competition. Tied first at 0.8565 accuracy after catching a planted target leak.<br>
+Personal-loan approval model for a Kaggle competition. Tied first at 0.8565 accuracy after catching a planted target leak.<br>
 `CATBOOST` `LIGHTGBM` `XGBOOST`
 
 </td>
@@ -108,29 +108,6 @@ Marketplace for art commissions with a generative-AI concept preview.<br>
 
 <img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/0c4bfc819187437830b5eeef10bf514803b2ac57/assets/techmap.svg" width="100%" alt="Technology map: a grid of tools by project showing the shared foundations, Python and gradient boosting across the machine-learning projects, Next.js and Vercel across the web projects, and the Claude API across the agents.">
 
-<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/0c4bfc819187437830b5eeef10bf514803b2ac57/assets/career.svg" width="100%" alt="Career timeline 2021 to 2026: BA in Economics at USI Lugano, MSc in Business Analytics at ESADE, and roles at Neptun, HMY Group, Fineco Bank and Global Payments.">
+<img src="CAPS_URL" width="100%" alt="Capabilities: skills in machine learning, AI agents, product, data, and risk and money, each counted by the projects that use it.">
 
-<details>
-<summary><code>( EXPERIENCE AND EDUCATION IN DETAIL )</code></summary>
-
-**Global Payments**, Risk Analyst, graduate project · Barcelona · 2026  
-Predictive ML model on 470k+ merchants to automate fraud and default detection, with transactional features such as chargeback ratios and insolvency indicators.
-
-**Fineco Bank**, Private Banking Intern · Milan · 2025  
-Portfolio construction for HNW clients; streamlined risk profiling, cutting interview time by 20%.
-
-**HMY Group**, Project Manager Intern · Milan · 2024  
-FP&A on $1–4M retail projects across 10 clients; built an Excel automation for Gantt planning.
-
-**Neptun S.r.l.**, Business Operations Associate · Milan · 2021–2025  
-AI-assisted database standardisation (client records +300%), financial analysis, KPI monitoring and monthly close support.
-
-**ESADE Business School**, MSc in Business Analytics · 2025–2026  
-Machine Learning, Cloud Computing, Big Data, AI-driven decision-making
-
-**USI, Università della Svizzera italiana**, BA in Economics, Major in Finance · 2021–2024  
-Thesis 9/10 · DCF Valuation 9.5/10 · Advanced Statistics 9.5/10
-
-</details>
-
-<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/0c4bfc819187437830b5eeef10bf514803b2ac57/assets/footer.svg" width="100%" alt="Gianluca Bavelloni">
+<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/0c4bfc819187437830b5eeef10bf514803b2ac57/assets/footer.svg" width="100%" alt="BAVE">
