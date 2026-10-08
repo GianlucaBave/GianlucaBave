@@ -244,6 +244,119 @@ def ascii_seraph(x0, y0, cols, rows, size=12, line=10.5, seed=5):
     return "".join(out)
 
 
+def ascii_punk(x0, y0, cols, rows, size=9, line=7.9, seed=11):
+    """A punk bust in characters: mohawk, shades, sneer, studded collar and jacket.
+
+    A few rows carry the "rg" class so they jump sideways in short glitch bursts.
+    """
+    rnd = random.Random(seed)
+    ramp = " .,:;-=+*#%@"
+    cw = size * 0.6
+    aspect = (rows * line) / (cols * cw)
+
+    def field(u, v):
+        b = 0.0
+        # Jacket: dark leather, bright shoulder outline, lapels and studs.
+        if v > 0.42:
+            half = min(0.97, 0.26 + (v - 0.42) * 2.4)
+            if abs(u) < half:
+                b = 0.3
+                if half - abs(u) < 0.035:
+                    b = 0.95                                            # shoulder outline
+                lap = 0.12 + (v - 0.42) * 0.55
+                if abs(abs(u) - lap) < 0.028:
+                    b = 0.95                                            # lapels
+                elif abs(u) < lap:
+                    b = 0.0                                             # black t-shirt
+                sx = (abs(u) - 0.5) / 0.1
+                if 0.5 < v < 0.8 and abs(u) > 0.45 and half - abs(u) > 0.07 and abs(sx - round(sx)) < 0.2 \
+                        and abs(((v - 0.5) / 0.1) - round((v - 0.5) / 0.1)) < 0.3:
+                    b = 1.0                                             # studs
+        # Neck with a shadow under the jaw.
+        if 0.22 < v <= 0.46 and abs(u) < 0.14:
+            b = 0.35 if v < 0.3 else 0.6
+        # Spiked collar.
+        if 0.36 < v < 0.44 and abs(u) < 0.17:
+            b = 0.95
+        if 0.29 < v <= 0.36 and abs(u) < 0.17 and abs(((u + 1) / 0.07) % 1 - 0.5) < (v - 0.29) * 3.5:
+            b = 1.0
+        # Head.
+        hx, hy, rx, ry = 0.0, -0.06, 0.34, 0.43
+        e = (u - hx) ** 2 / rx ** 2 + (v - hy) ** 2 / ry ** 2
+        if e <= 1:
+            nz = math.sqrt(1 - e)
+            lam = max(0.0, -0.5 * (u - hx) / rx - 0.3 * (v - hy) / ry + 0.8 * nz)
+            b = min(1.0, 0.55 + 0.45 * lam)
+            if v < -0.24 and abs(u) > 0.11:                             # shaved sides
+                b = 0.3 + (0.12 if (int(u * 70) + int(v * 70)) % 2 else 0)
+            for ex in (-0.14, 0.14):                                    # round shades
+                le = ((u - ex) / 0.125) ** 2 + ((v + 0.08) / 0.085) ** 2
+                if le <= 1:
+                    b = 0.0
+                    if ((u - ex + 0.05) / 0.028) ** 2 + ((v + 0.11) / 0.022) ** 2 <= 1:
+                        b = 0.85                                        # glint
+                elif le <= 1.65:
+                    b = 1.0                                             # frames
+            if abs(v + 0.08) < 0.018 and abs(u) < 0.03:
+                b = 1.0                                                 # bridge
+            if 0.015 < u < 0.045 and 0.0 < v < 0.09:
+                b = 0.3                                                 # nose shadow
+            curve = 0.17 - 0.9 * max(0.0, u - 0.03) ** 2               # sneer: right corner lifts
+            if abs(v - curve) < 0.02 and -0.12 < u < 0.14:
+                b = 0.0
+            ring = ((u - 0.05) / 0.032) ** 2 + ((v - 0.205) / 0.026) ** 2
+            if 0.3 <= ring <= 1:
+                b = 1.0                                                 # lip ring
+        for side in (-1, 1):                                            # ears and earrings
+            if ((u - side * 0.345) / 0.045) ** 2 + ((v + 0.03) / 0.085) ** 2 <= 1:
+                b = max(b, 0.5)
+            if ((u - side * 0.355) / 0.022) ** 2 + ((v - 0.08) / 0.022) ** 2 <= 1:
+                b = 1.0
+        # Mohawk: separate spikes rising from the crown.
+        if abs(u) < 0.1 and -0.56 < v < -0.4:
+            b = max(b, 0.95)
+        for ang in (-30, -20, -10, 0, 10, 20, 30):
+            a = math.radians(ang)
+            length = 0.46 - abs(ang) / 30 * 0.12
+            dx, dy = math.sin(a), -math.cos(a)
+            px, py = u, v + 0.46
+            along = px * dx + py * dy
+            perp = abs(-px * dy + py * dx)
+            if 0 <= along <= length and perp <= 0.055 * (1 - along / length) + 0.004:
+                b = max(b, 1.0)
+        return b
+
+    out = [f'<g font-family="{MONO}" font-size="{size}" fill="{WHITE}" xml:space="preserve">']
+    glitch_rows = set(rnd.sample(range(rows), 7))
+    for r in range(rows):
+        cells = []
+        for c in range(cols):
+            u = (c - cols / 2 + 0.5) / (cols / 2)
+            v = (r - rows / 2 + 0.5) / (rows / 2) * aspect
+            b = field(u, v)
+            if b == 0 and rnd.random() < 0.01:
+                b = 0.2
+            cells.append(b)
+        runs, cur_lvl, start, chars = [], None, 0, ""
+        for c, b in enumerate(cells + [None]):
+            lvl = None if b is None else (0 if b < 0.05 else min(4, int(b * 5)))
+            if lvl != cur_lvl:
+                if cur_lvl not in (None, 0) and chars.strip():
+                    runs.append((start, cur_lvl, chars))
+                cur_lvl, start, chars = lvl, c, ""
+            if b is not None:
+                chars += ramp[min(len(ramp) - 1, int(b * (len(ramp) - .01)))] if lvl else " "
+        y = y0 + r * line
+        row = "".join(f'<text x="{x0 + st * cw:.1f}" y="{y:.1f}" fill-opacity="{0.2 + 0.2 * lv:.2f}">{escape(ch)}</text>'
+                      for st, lv, ch in runs)
+        if r in glitch_rows:
+            row = (f'<g class="rg" style="animation-duration:{rnd.uniform(3.5, 7):.1f}s;'
+                   f'animation-delay:-{rnd.uniform(0, 5):.1f}s">{row}</g>')
+        out.append(row)
+    out.append("</g>")
+    return "".join(out)
+
+
 # ---------------------------------------------------------------- hero
 
 PHRASES = ["training risk models", "shipping LLM agents", "mapping 15,350 artists", "hunting target leaks"]
@@ -277,13 +390,13 @@ def hero():
                + mono(W - 32 - bw / 2, 40.5, "# SWITZERLAND", 12, 1, anchor="middle", weight=700, fill=BLACK))
     out.append(hairline(32, 66, W - 32, 66))
 
-    # ASCII seraph with a moving scan band.
+    # ASCII punk with a moving scan band.
     ox, oy, cols, rows = 604, 100, 60, 48
-    out.append(ascii_seraph(ox, oy, cols, rows, size=9, line=7.9))
+    out.append(ascii_punk(ox, oy, cols, rows, size=9, line=7.9))
     out.append(f'<defs><linearGradient id="band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{WHITE}" stop-opacity="0"/>'
                f'<stop offset=".5" stop-color="{WHITE}" stop-opacity=".05"/><stop offset="1" stop-color="{WHITE}" stop-opacity="0"/></linearGradient></defs>'
                f'<rect class="scan" x="{ox - 6}" y="{oy - 14}" width="{cols * 5.4 + 12:.1f}" height="44" fill="url(#band)"/>')
-    out.append(mono(ox, oy + rows * 7.9 + 8, "// RENDER: SERAPH.TXT  ·  60×48", 10, .45))
+    out.append(mono(ox, oy + rows * 7.9 + 8, "// RENDER: PUNK.TXT  ·  60×48", 10, .45))
 
     # Name: blackletter first name, condensed display surname with glitch.
     gd, _ = type_path("goth", "Gianluca", 96, 30, 196)
