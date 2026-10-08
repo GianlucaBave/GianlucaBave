@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/badge/FASTAPI-000000?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
 </p>
 
-<img src="assets/roadmap.svg" width="100%" alt="Project roadmap: nine projects from October 2025 to June 2026 across AI products, web and data visualisation, and machine learning for risk and pricing, with lines linking projects that share technology.">
+<img src="assets/roadmap.svg" width="100%" alt="Project roadmap: ten projects from October 2025 to June 2026 across AI products, web and data visualisation, and machine learning for risk and pricing, with lines linking projects that share technology.">
 
 ### `( SELECTED WORK )`
 
@@ -66,7 +66,20 @@ Fair-value model for second-hand iPhones on 13,745 price records, 8,262 scraped 
 #### [CV JOB FIT CHECKER](https://github.com/GianlucaBave/Seminar-challenge) · [demo](https://seminar-challenge.vercel.app)
 `// LLM TOOL`<br>
 Scores a CV against a job offer and suggests how to tailor it.<br>
-`NODE.JS` `GEMINI API`<br><br>
+`NODE.JS` `GEMINI API`
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+#### UNIROCKET · [demo](https://startup-uni.vercel.app)
+`// SAAS · CODE PRIVATE`<br>
+Platform for student founders: find teammates, pitch ideas, raise funds and watch the market with a built-in radar.<br>
+`NEXT.JS` `SUPABASE` `STRIPE`
+
+</td>
+<td width="50%" valign="top">
 
 #### [ARTSYNC](https://github.com/GianlucaBave/artsync) · [demo](https://artsync-pi.vercel.app)
 `// PROTOTYPE`<br>

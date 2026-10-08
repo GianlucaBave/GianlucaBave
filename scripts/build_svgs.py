@@ -165,10 +165,89 @@ def ascii_orb(x0, y0, cols, rows, size=12, line=10.5, seed=3):
     return "".join(out)
 
 
+def ascii_seraph(x0, y0, cols, rows, size=12, line=10.5, seed=5):
+    """A halo, two feathered wings and a small light, rendered in characters.
+
+    A few rows carry the "rg" class so they jump sideways in short glitch bursts.
+    """
+    rnd = random.Random(seed)
+    ramp = " .,:;-=+*#%@"
+    cw = size * 0.6
+    aspect = (rows * line) / (cols * cw)
+
+    def wing(u, v):
+        """Spread wing: the leading edge rises to the tip, feathers hang below it."""
+        x0 = abs(u) * 1.2                                    # span scaled so the tips stay inside
+        if not 0.1 <= x0 <= 1.15:
+            return 0.0
+        t0 = min(1.0, (x0 - 0.1) / 0.9)
+        top = -0.4 - 0.55 * math.sin(min(t0, 1) * math.pi / 2) ** 1.2   # arched leading edge
+        length = 0.4 + 0.85 * t0
+        if v < top:
+            return 0.0
+        depth = (v - top) / length
+        x = x0 - 0.15 * depth ** 1.3                          # feathers sweep outward as they fall
+        t = (x - 0.1) / 0.9
+        if not 0 <= t <= 1:
+            return 0.0
+        f = (t * 9) % 1                                       # position inside one feather
+        if depth > 1 - 0.12 * (2 * f - 1) ** 2:                # rounded feather tips
+            return 0.0
+        b = 0.95 - 0.45 * depth
+        if depth < 0.28:                                   # coverts: small scalloped rows
+            b *= 0.8 + 0.2 * math.cos((x * 30) + (v * 25))
+        elif abs(2 * f - 1) > 0.78:                        # gaps between primaries
+            b *= 0.35
+        return b
+
+    out = [f'<g font-family="{MONO}" font-size="{size}" fill="{WHITE}" xml:space="preserve">']
+    glitch_rows = set(rnd.sample(range(rows), 6))
+    for r in range(rows):
+        cells = []
+        for c in range(cols):
+            u = (c - cols / 2 + 0.5) / (cols / 2)
+            v = (r - rows / 2 + 0.5) / (rows / 2) * aspect
+            b = wing(u, v)
+            # Robe: a soft bell with vertical folds.
+            if -0.56 < v < 0.9:
+                half = 0.07 + 0.2 * (v + 0.56) / 1.46
+                if abs(u) < half:
+                    b = max(b, (0.25 + 0.3 * (1 - abs(u) / half)) * (0.8 + 0.2 * math.cos(u * 28)))
+            # Head.
+            d = math.hypot(u, v + 0.68) / 0.1
+            if d <= 1:
+                b = max(b, 0.75 + 0.25 * math.sqrt(1 - d * d))
+            # Halo.
+            ring = (u / 0.2) ** 2 + ((v + 0.93) / 0.06) ** 2
+            if abs(ring - 1) < 0.75:
+                b = max(b, 1.0)
+            if b == 0 and rnd.random() < 0.012:
+                b = 0.2
+            cells.append(b)
+        runs, cur_lvl, start, chars = [], None, 0, ""
+        for c, b in enumerate(cells + [None]):
+            lvl = None if b is None else (0 if b < 0.05 else min(4, int(b * 5)))
+            if lvl != cur_lvl:
+                if cur_lvl not in (None, 0) and chars.strip():
+                    runs.append((start, cur_lvl, chars))
+                cur_lvl, start, chars = lvl, c, ""
+            if b is not None:
+                chars += ramp[min(len(ramp) - 1, int(b * (len(ramp) - .01)))] if lvl else " "
+        y = y0 + r * line
+        row = "".join(f'<text x="{x0 + st * cw:.1f}" y="{y:.1f}" fill-opacity="{0.2 + 0.2 * lv:.2f}">{escape(ch)}</text>'
+                      for st, lv, ch in runs)
+        if r in glitch_rows:
+            row = (f'<g class="rg" style="animation-duration:{rnd.uniform(3.5, 7):.1f}s;'
+                   f'animation-delay:-{rnd.uniform(0, 5):.1f}s">{row}</g>')
+        out.append(row)
+    out.append("</g>")
+    return "".join(out)
+
+
 # ---------------------------------------------------------------- hero
 
 PHRASES = ["training risk models", "shipping LLM agents", "mapping 15,350 artists", "hunting target leaks"]
-STATS = [("09", "PROJECTS"), ("#1", "KAGGLE PUBLIC LB"), ("15,350", "ARTISTS MAPPED"), ("470K", "MERCHANTS SCORED")]
+STATS = [("10", "PROJECTS"), ("#1", "KAGGLE PUBLIC LB"), ("15,350", "ARTISTS MAPPED"), ("470K", "MERCHANTS SCORED")]
 
 
 def hero():
@@ -178,7 +257,9 @@ def hero():
     css = [f"@keyframes show {{ 0%,{share:.2f}% {{ opacity: 1; }} {share + .01:.2f}%,100% {{ opacity: 0; }} }}",
            f".phrase {{ opacity: 0; animation: show {cycle:.1f}s steps(1) infinite; }} .ph0 {{ opacity: 1; }}",
            "@keyframes scan { from { transform: translateY(0); } to { transform: translateY(380px); } }",
-           ".scan { animation: scan 4.5s linear infinite; }"]
+           ".scan { animation: scan 4.5s linear infinite; }",
+           "@keyframes rowg { 0%,88%,100% { transform: none; opacity: 1; } 89% { transform: translateX(-9px); } 91% { transform: translateX(7px); opacity: .5; } 93% { transform: translateX(-4px); } 95% { transform: translateX(3px); opacity: 1; } }",
+           ".rg { animation: rowg 5s steps(1) infinite; }"]
     for i, ph in enumerate(PHRASES):
         n, wpx = len(ph), mono_w(ph, 15)
         css += [f"@keyframes ty{i} {{ 0% {{ transform: scaleX(0); }} {typed:.2f}%,100% {{ transform: scaleX(1); }} }}",
@@ -196,13 +277,13 @@ def hero():
                + mono(W - 32 - bw / 2, 40.5, "# SWITZERLAND", 12, 1, anchor="middle", weight=700, fill=BLACK))
     out.append(hairline(32, 66, W - 32, 66))
 
-    # ASCII orb with a moving scan band.
-    ox, oy, cols, rows = 640, 104, 40, 36
-    out.append(ascii_orb(ox, oy, cols, rows))
+    # ASCII seraph with a moving scan band.
+    ox, oy, cols, rows = 604, 100, 60, 48
+    out.append(ascii_seraph(ox, oy, cols, rows, size=9, line=7.9))
     out.append(f'<defs><linearGradient id="band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{WHITE}" stop-opacity="0"/>'
-               f'<stop offset=".5" stop-color="{WHITE}" stop-opacity=".07"/><stop offset="1" stop-color="{WHITE}" stop-opacity="0"/></linearGradient></defs>'
-               f'<rect class="scan" x="{ox - 6}" y="{oy - 14}" width="{cols * 7.2 + 12:.1f}" height="44" fill="url(#band)"/>')
-    out.append(mono(ox, oy + rows * 10.5 + 8, "// RENDER: ORB.TXT  ·  40×36  ·  †", 10, .45))
+               f'<stop offset=".5" stop-color="{WHITE}" stop-opacity=".05"/><stop offset="1" stop-color="{WHITE}" stop-opacity="0"/></linearGradient></defs>'
+               f'<rect class="scan" x="{ox - 6}" y="{oy - 14}" width="{cols * 5.4 + 12:.1f}" height="44" fill="url(#band)"/>')
+    out.append(mono(ox, oy + rows * 7.9 + 8, "// RENDER: SERAPH.TXT  ·  60×48", 10, .45))
 
     # Name: blackletter first name, condensed display surname with glitch.
     gd, _ = type_path("goth", "Gianluca", 96, 30, 196)
@@ -241,36 +322,39 @@ LANES = [("ai", "AI PRODUCTS & LLM AGENTS"), ("web", "WEB & DATA VISUALISATION")
 # Chronological order. "col" is the station column; projects in different lanes may share one.
 PROJECTS = [
     dict(key="portfolio", name="AI Portfolio", date="OCT 2025", lane="web", col=0,
-         tech=["Node.js·Express", "LLM chat", "Vercel"]),
-    dict(key="artsync", name="ArtSync", date="JAN 2026", lane="web", col=1,
+         tech=["Node·Express", "LLM chat", "Vercel"]),
+    dict(key="unirocket", name="Unirocket", date="NOV 2025", lane="web", col=1, tag="LIVE DEMO",
+         tech=["Next.js", "Supabase", "Stripe·OAuth"]),
+    dict(key="artsync", name="ArtSync", date="JAN 2026", lane="web", col=2,
          tech=["Next.js·React", "Tailwind", "GenAI preview"]),
-    dict(key="cvfit", name="CV Job Fit Checker", date="JAN 2026", lane="ai", col=1,
+    dict(key="cvfit", name="CV Job Fit Checker", date="JAN 2026", lane="ai", col=2,
          tech=["Node.js", "Gemini API", "PDF parsing"]),
-    dict(key="crowdloop", name="CrowdLoop AI", date="FEB 2026", lane="ai", col=2,
+    dict(key="crowdloop", name="CrowdLoop AI", date="FEB 2026", lane="ai", col=3,
          tech=["Next.js", "Claude agent", "RAG·Web Audio"]),
-    dict(key="fynn", name="Fynn", date="APR 2026", lane="ai", col=3, tag="TEAM PROJECT",
+    dict(key="fynn", name="Fynn", date="APR 2026", lane="ai", col=4, tag="TEAM PROJECT",
          tech=["Claude·SQL", "FastAPI", "LightGBM"]),
-    dict(key="risk", name="Merchant Risk Scoring", date="APR 2026", lane="ml", col=3, tag="PRIVATE·NDA",
+    dict(key="risk", name="Merchant Risk Scoring", date="APR 2026", lane="ml", col=4, tag="PRIVATE·NDA",
          tech=["XGBoost", "SHAP", "470k merchants"]),
-    dict(key="credit", name="Credit Decision", date="JUN 2026", lane="ml", col=4, tag="#1 PUBLIC LB",
+    dict(key="credit", name="Credit Decision", date="JUN 2026", lane="ml", col=5, tag="#1 PUBLIC LB",
          tech=["CatBoost", "LightGBM", "XGBoost"]),
-    dict(key="iphone", name="iPhone Deal-Finder", date="JUN 2026", lane="ml", col=5,
+    dict(key="iphone", name="iPhone Deal-Finder", date="JUN 2026", lane="ml", col=6,
          tech=["Scraping", "LightGBM", "13.7k prices"]),
-    dict(key="tunescape", name="Tunescape", date="JUN 2026", lane="web", col=6,
+    dict(key="tunescape", name="Tunescape", date="JUN 2026", lane="web", col=7,
          tech=["8 recommenders", "Next.js", "deck.gl"]),
 ]
 
 # (from, to, label, label position override or None)
 LINKS = [
-    ("portfolio", "cvfit", "NODE.JS·LLM", (94, 290)),
-    ("portfolio", "artsync", "VERCEL", None),
-    ("artsync", "tunescape", "NEXT.JS·REACT", (805, 370)),
+    ("portfolio", "cvfit", "NODE.JS·LLM", (110, 290)),
+    ("portfolio", "unirocket", "VERCEL", None),
+    ("unirocket", "artsync", "NEXT.JS", None),
+    ("artsync", "tunescape", "NEXT.JS·REACT", (790, 372)),
     ("cvfit", "crowdloop", "GEMINI→CLAUDE", None),
     ("crowdloop", "fynn", "CLAUDE AGENTS", None),
-    ("fynn", "risk", "TRANSACTIONS", (480, 492)),
+    ("fynn", "risk", "TRANSACTIONS", (536, 492)),
     ("risk", "credit", "RISK·XGBOOST", None),
     ("credit", "iphone", "BOOSTING", None),
-    ("iphone", "tunescape", "PYTHON ML", (730, 492)),
+    ("iphone", "tunescape", "PYTHON ML", (700, 492)),
 ]
 
 
@@ -285,14 +369,14 @@ def label_box(x, y, s, size=9.5, inverted=False):
 def roadmap():
     W, H = 960, 810
     lane_y = {"ai": 194, "web": 394, "ml": 594}
-    pos = {p["key"]: (90 + 130 * p["col"], lane_y[p["lane"]]) for p in PROJECTS}
+    pos = {p["key"]: (72 + 116 * p["col"], lane_y[p["lane"]]) for p in PROJECTS}
     lane_of = {p["key"]: p["lane"] for p in PROJECTS}
     out = [svg_open(W, H, "Project roadmap: nine projects and the technology they share"),
            section_header("01 · PROJECT ROADMAP", "From analytics to AI products",
-                          "Nine projects, Oct 2025 to Jun 2026. Lines link projects that share technology or domain.", "R", W)]
+                          "Ten projects, Oct 2025 to Jun 2026. Lines link projects that share technology or domain.", "R", W)]
     for key, label in LANES:
         y = lane_y[key]
-        lx = 520 if key == "web" else 32  # web label sits in the gap between link lines
+        lx = 566 if key == "web" else 32  # web label sits in the gap between link lines
         out.append(hairline(24, y, W - 24, y, .14, "1 4") + mono(lx, y - 18, f"// {label}", 10, .55))
 
     labels = []
@@ -309,9 +393,9 @@ def roadmap():
 
     for p in PROJECTS:
         x, y = pos[p["key"]]
-        name_lines = wrap(p["name"], 14)
+        name_lines = wrap(p["name"], 13)
         rows = ([(p["tag"], True)] if p.get("tag") else []) + [(t_, False) for t_ in p["tech"]]
-        cw, cx0, cy0 = 120, x - 60, y + 20
+        cw, cx0, cy0 = 112, x - 56, y + 20
         rows_y = cy0 + 34 + 16 * len(name_lines)
         ch = (rows_y - cy0) + 19 * len(rows) + 4
         out.append(f'<rect x="{cx0}" y="{cy0}" width="{cw}" height="{ch}" fill="{WHITE}" fill-opacity=".06" stroke="{WHITE}" stroke-opacity=".16"/>'
@@ -354,13 +438,15 @@ TECH_ROWS = [
         ("RAG · embeddings", {"crowdloop"}),
     ]),
     ("WEB & PRODUCT", [
-        ("Next.js · React · TS", {"artsync", "crowdloop", "fynn", "tunescape"}),
-        ("Tailwind CSS", {"artsync", "fynn", "tunescape"}),
+        ("Next.js · React · TS", {"unirocket", "artsync", "crowdloop", "fynn", "tunescape"}),
+        ("Tailwind CSS", {"unirocket", "artsync", "fynn", "tunescape"}),
+        ("Supabase · Postgres", {"unirocket"}),
+        ("Auth.js · OAuth · Stripe", {"unirocket"}),
         ("FastAPI", {"fynn"}),
         ("Node.js · Express", {"portfolio", "cvfit"}),
         ("deck.gl", {"tunescape"}),
         ("Web Audio API", {"crowdloop"}),
-        ("Vercel", {"portfolio", "artsync", "cvfit", "crowdloop", "tunescape"}),
+        ("Vercel", {"portfolio", "unirocket", "artsync", "cvfit", "crowdloop", "tunescape"}),
     ]),
     ("DATA", [
         ("Web scraping", {"iphone"}),
@@ -369,7 +455,7 @@ TECH_ROWS = [
     ]),
 ]
 
-SHORT = {"portfolio": "PORTFOLIO", "artsync": "ARTSYNC", "fynn": "FYNN", "cvfit": "CV CHECK", "crowdloop": "CROWDLOOP",
+SHORT = {"portfolio": "PORTFOLIO", "unirocket": "UNIROCKET", "artsync": "ARTSYNC", "fynn": "FYNN", "cvfit": "CV CHECK", "crowdloop": "CROWDLOOP",
          "risk": "RISK", "credit": "CREDIT", "iphone": "IPHONE", "tunescape": "TUNESCAPE"}
 
 
@@ -377,14 +463,14 @@ def techmap():
     rows = sum(len(r) for _, r in TECH_ROWS)
     W, top, rh, gh = 960, 196, 24, 32
     H = top + rows * rh + len(TECH_ROWS) * gh + 40
-    col0, cstep = 262, 66
+    col0, cstep = 258, 58
     cols = {p["key"]: col0 + cstep * i for i, p in enumerate(PROJECTS)}
     out = [svg_open(W, H, "Technology map: which tools each project uses"),
            section_header("02 · TECH MATRIX", "What the projects share",
                           "Each square is a tool used in a project. Rows with several squares are the shared foundations.", "T", W)]
     for p in PROJECTS:
         x = cols[p["key"]]
-        out.append(mono(x, top - 20, SHORT[p["key"]], 9.5, .8, anchor="middle", weight=700)
+        out.append(mono(x, top - 20, SHORT[p["key"]], 8.5, .8, anchor="middle", weight=700)
                    + hairline(x, top - 8, x, H - 30, .1))
     out.append(mono(W - 36, top - 20, "USED IN", 9.5, .5, anchor="end", weight=700))
     y = top
@@ -401,8 +487,8 @@ def techmap():
                 x = cols[k]
                 out.append(f'<rect x="{x - 4.5}" y="{y + 6}" width="9" height="9" fill="{WHITE}"/>')
             n = len(used)
-            for s in range(5):  # segmented meter
-                out.append(f'<rect x="{W - 132 + s * 14}" y="{y + 6}" width="10" height="9" fill="{WHITE}" fill-opacity="{1 if s < n else .12}"/>')
+            for s in range(6):  # segmented meter
+                out.append(f'<rect x="{W - 140 + s * 14}" y="{y + 6}" width="10" height="9" fill="{WHITE}" fill-opacity="{1 if s < n else .12}"/>')
             out.append(mono(W - 36, y + 15, str(n), 11, 1, anchor="end", weight=700))
             y += rh
     out.append("</svg>")
