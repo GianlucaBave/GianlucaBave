@@ -1,4 +1,4 @@
-<img src="assets/hero.svg?v=4" width="100%" alt="Gianluca Bavelloni. MSc Business Analytics and AI, Switzerland. I build cool stuff with AI agents. Sometimes it's even useful. Risk models, recommenders, a DJ copilot, a finance bot that talks back.">
+<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/a88afb1ac62d244db54a14b4bcb95df1039b1955/assets/hero.svg" width="100%" alt="Gianluca Bavelloni. MSc Business Analytics and AI, Switzerland. I build cool stuff with AI agents. Sometimes it's even useful. Risk models, recommenders, a DJ copilot, a finance bot that talks back.">
 
 <p align="center">
   <img src="https://img.shields.io/badge/PYTHON-000000?style=for-the-badge&logo=python&logoColor=white" alt="Python">
@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/badge/FASTAPI-000000?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
 </p>
 
-<img src="assets/roadmap.svg?v=4" width="100%" alt="Project roadmap: ten projects from October 2025 to June 2026 across AI products, web and data visualisation, and machine learning for risk and pricing, with lines linking projects that share technology.">
+<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/a88afb1ac62d244db54a14b4bcb95df1039b1955/assets/roadmap.svg" width="100%" alt="Project roadmap: ten projects from October 2025 to June 2026 across AI products, web and data visualisation, and machine learning for risk and pricing, with lines linking projects that share technology.">
 
 ### `( SELECTED WORK )`
 
@@ -90,9 +90,9 @@ Marketplace for art commissions with a generative-AI concept preview.<br>
 </tr>
 </table>
 
-<img src="assets/techmap.svg?v=4" width="100%" alt="Technology map: a grid of tools by project showing the shared foundations, Python and gradient boosting across the machine-learning projects, Next.js and Vercel across the web projects, and the Claude API across the agents.">
+<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/a88afb1ac62d244db54a14b4bcb95df1039b1955/assets/techmap.svg" width="100%" alt="Technology map: a grid of tools by project showing the shared foundations, Python and gradient boosting across the machine-learning projects, Next.js and Vercel across the web projects, and the Claude API across the agents.">
 
-<img src="assets/career.svg?v=4" width="100%" alt="Career timeline 2021 to 2026: BA in Economics at USI Lugano, MSc in Business Analytics at ESADE, and roles at Neptun, HMY Group, Fineco Bank and Global Payments.">
+<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/a88afb1ac62d244db54a14b4bcb95df1039b1955/assets/career.svg" width="100%" alt="Career timeline 2021 to 2026: BA in Economics at USI Lugano, MSc in Business Analytics at ESADE, and roles at Neptun, HMY Group, Fineco Bank and Global Payments.">
 
 <details>
 <summary><code>( EXPERIENCE AND EDUCATION IN DETAIL )</code></summary>
@@ -117,4 +117,4 @@ Thesis 9/10 · DCF Valuation 9.5/10 · Advanced Statistics 9.5/10
 
 </details>
 
-<img src="assets/footer.svg?v=4" width="100%" alt="Gianluca Bavelloni">
+<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/a88afb1ac62d244db54a14b4bcb95df1039b1955/assets/footer.svg" width="100%" alt="Gianluca Bavelloni">
