@@ -26,6 +26,7 @@ SANS = "-apple-system,BlinkMacSystemFont,'Segoe UI','Inter','Helvetica Neue',Ari
 
 WHITE, BLACK = "#ffffff", "#000000"
 FONTS = {}  # "display" (Anton), "goth" (UnifrakturMaguntia); set in main
+FIGURE = None  # optional {"path": image, "crop": box} for the hero ASCII figure; set in main
 
 
 # ---------------------------------------------------------------- type helpers
@@ -357,6 +358,110 @@ def ascii_punk(x0, y0, cols, rows, size=9, line=7.9, seed=11):
     return "".join(out)
 
 
+def punk_silhouette():
+    """An original punk profile in black on white: radial mohawk, face profile, chain collar."""
+    from PIL import Image, ImageDraw
+    W, H, ox, oy = 700, 819, 60, 110
+    img = Image.new("L", (W, H), 255)
+    d = ImageDraw.Draw(img)
+    P = lambda pts: [(x + ox, y + oy) for x, y in pts]
+    cx, cy, rx, ry = 330 + ox, 330 + oy, 140, 150
+    # Mohawk: spikes radiating from the crown, front to nape.
+    rnd = random.Random(21)
+    for k in range(36):
+        a = math.radians(206 + k * 5.0)
+        t = k / 35
+        length = (60 + 120 * math.sin(math.pi * min(1, t * 1.2)) * (1 - 0.3 * t)) * (1.0 if k % 2 else 0.62) + rnd.uniform(-15, 15)
+        ux, uy = math.cos(a), math.sin(a)
+        tilt = math.radians(rnd.uniform(-12, 12) - 8)
+        dx, dy = ux * math.cos(tilt) - uy * math.sin(tilt), ux * math.sin(tilt) + uy * math.cos(tilt)
+        bx, by = cx + rx * 0.9 * ux, cy + ry * 0.9 * uy
+        half = 12 + 5 * math.sin(math.pi * t)
+        px, py = -dy, dx
+        d.polygon([(bx + px * half, by + py * half), (bx - px * half, by - py * half),
+                   (bx + dx * (length + rx * 0.1), by + dy * (length + ry * 0.1))], fill=0)
+    # Skull, face profile and neck.
+    d.ellipse([cx - rx, cy - ry, cx + rx, cy + ry], fill=0)
+    d.polygon(P([(215, 245), (190, 300), (184, 335), (204, 350), (190, 366), (140, 412), (150, 425),
+                 (194, 430), (176, 446), (198, 456), (172, 470), (196, 484), (190, 506), (212, 528),
+                 (270, 536), (300, 505), (330, 330)]), fill=0)
+    d.polygon(P([(250, 515), (282, 640), (288, 652), (452, 640), (440, 600), (430, 470), (330, 430)]), fill=0)
+    # Eye notch and ear in negative space.
+    d.polygon(P([(200, 336), (236, 342), (208, 356)]), fill=255)
+    d.arc([cx + 18, cy + 40, cx + 58, cy + 100], 290, 70, fill=255, width=7)
+    # Chain collar: alternating links along the neck.
+    x1, y1, x2, y2 = 268 + ox, 600 + oy, 448 + ox, 566 + oy
+    for k in range(7):
+        t = (k + 0.5) / 7
+        lx, ly = x1 + (x2 - x1) * t, y1 + (y2 - y1) * t
+        w, h = (16, 9) if k % 2 == 0 else (9, 14)
+        d.ellipse([lx - w, ly - h, lx + w, ly + h], outline=255, width=5)
+    return img
+
+
+def ascii_from_image(path, x0, y0, cols, rows, size=9, line=7.9, crop=None, seed=13):
+    """Render a high-contrast image (dark subject on light paper) as characters.
+
+    Needs Pillow. Dark pixels become dense, bright characters on the black page.
+    A few rows carry the "rg" class so they jump sideways in short glitch bursts.
+    """
+    from PIL import Image, ImageFilter, ImageOps
+    rnd = random.Random(seed)
+    ramp = " .,:;-=+*#%@"
+    cw = size * 0.6
+    img = ImageOps.grayscale(path if isinstance(path, Image.Image) else Image.open(path))
+    if crop and crop != "auto":
+        img = img.crop(crop)
+    if crop == "auto":
+        # Tight box around the dark subject, widened to the grid's aspect ratio.
+        l, t, r, b = ImageOps.invert(img).point(lambda v: 255 if v > 40 else 0).getbbox()
+        want = (cols * cw) / (rows * line)
+        w, h = r - l, b - t
+        if w / h < want:
+            grow = h * want - w
+            l, r = l - grow / 2, r + grow / 2
+        else:
+            grow = w / want - h
+            t, b = t - grow / 2, b + grow / 2
+        pad = 0.03 * (r - l)
+        m = 400  # white margin so the crop never reaches outside the paper
+        img = ImageOps.expand(img, border=m, fill=255)
+        img = img.crop((int(l - pad + m), int(t - pad + m), int(r + pad + m), int(b + pad + m)))
+    # Engraved look: bright outline, dimmer fill.
+    edges = img.filter(ImageFilter.FIND_EDGES)
+    edges = ImageOps.expand(ImageOps.crop(edges, 4), border=4, fill=0).filter(ImageFilter.MaxFilter(3))
+    edges = edges.resize((cols, rows), Image.BOX)
+    img = img.resize((cols, rows), Image.BOX)
+    out = [f'<g font-family="{MONO}" font-size="{size}" fill="{WHITE}" xml:space="preserve">']
+    glitch_rows = set(rnd.sample(range(rows), 7))
+    for r in range(rows):
+        cells = []
+        for c in range(cols):
+            dark = 1 - img.getpixel((c, r)) / 255
+            edge = edges.getpixel((c, r)) / 255
+            fill = 0.0 if dark < 0.12 else 0.58 * min(1.0, (dark - 0.12) / 0.8)
+            b = min(1.0, fill + 2.2 * edge) if (dark > 0.08 or edge > 0.2) else 0.0
+            cells.append(b)
+        runs, cur_lvl, start, chars = [], None, 0, ""
+        for c, b in enumerate(cells + [None]):
+            lvl = None if b is None else (0 if b < 0.05 else min(4, int(b * 5)))
+            if lvl != cur_lvl:
+                if cur_lvl not in (None, 0) and chars.strip():
+                    runs.append((start, cur_lvl, chars))
+                cur_lvl, start, chars = lvl, c, ""
+            if b is not None:
+                chars += ramp[min(len(ramp) - 1, int(b * (len(ramp) - .01)))] if lvl else " "
+        y = y0 + r * line
+        row = "".join(f'<text x="{x0 + st * cw:.1f}" y="{y:.1f}" fill-opacity="{0.2 + 0.2 * lv:.2f}">{escape(ch)}</text>'
+                      for st, lv, ch in runs)
+        if r in glitch_rows:
+            row = (f'<g class="rg" style="animation-duration:{rnd.uniform(3.5, 7):.1f}s;'
+                   f'animation-delay:-{rnd.uniform(0, 5):.1f}s">{row}</g>')
+        out.append(row)
+    out.append("</g>")
+    return "".join(out)
+
+
 # ---------------------------------------------------------------- hero
 
 PHRASES = ["training risk models", "shipping LLM agents", "mapping 15,350 artists", "hunting target leaks"]
@@ -392,11 +497,14 @@ def hero():
 
     # ASCII figure with a moving scan band.
     ox, oy, cols, rows = 604, 100, 60, 48
-    out.append(ascii_seraph(ox, oy, cols, rows, size=9, line=7.9))
+    if FIGURE:
+        out.append(ascii_from_image(FIGURE["path"], ox, oy, cols, rows, size=9, line=7.9, crop=FIGURE.get("crop")))
+    else:
+        out.append(ascii_from_image(punk_silhouette(), ox, oy, 80, 64, size=6.75, line=5.93, crop="auto"))
     out.append(f'<defs><linearGradient id="band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{WHITE}" stop-opacity="0"/>'
                f'<stop offset=".5" stop-color="{WHITE}" stop-opacity=".05"/><stop offset="1" stop-color="{WHITE}" stop-opacity="0"/></linearGradient></defs>'
                f'<rect class="scan" x="{ox - 6}" y="{oy - 14}" width="{cols * 5.4 + 12:.1f}" height="44" fill="url(#band)"/>')
-    out.append(mono(ox, oy + rows * 7.9 + 8, "// RENDER: SERAPH.TXT  ·  60×48", 10, .45))
+    out.append(mono(ox, oy + rows * 7.9 + 8, "// RENDER: PUNK.TXT  ·  80×64", 10, .45))
 
     # Name: blackletter first name, condensed display surname with glitch.
     gd, _ = type_path("goth", "Builder of Agents", 50, 32, 158)
@@ -697,7 +805,12 @@ def footer():
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--fonts", required=True, help="folder with Anton-Regular.ttf and UnifrakturMaguntia-Book.ttf")
-    folder = Path(ap.parse_args().fonts)
+    ap.add_argument("--figure", help="optional high-contrast image for the hero ASCII figure")
+    ap.add_argument("--crop", help="optional crop box for --figure: left,top,right,bottom")
+    args = ap.parse_args()
+    folder = Path(args.fonts)
+    if args.figure:
+        FIGURE = {"path": args.figure, "crop": tuple(int(v) for v in args.crop.split(",")) if args.crop else None}
     FONTS["display"] = TTFont(folder / "Anton-Regular.ttf")
     FONTS["goth"] = TTFont(folder / "UnifrakturMaguntia-Book.ttf")
     OUT.mkdir(exist_ok=True)
