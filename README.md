@@ -19,6 +19,16 @@
 <tr>
 <td width="50%" valign="top">
 
+<a href="https://github.com/GianlucaBave/murmury"><img src="assets/shots/murmury.jpg" width="100%" alt="Murmury answering a question in a floating window during a video call"></a>
+
+#### [MURMURY](https://github.com/GianlucaBave/murmury) · [site](https://murmury.pages.dev)
+`// OPEN SOURCE · MACOS`<br>
+The open-source Cluely alternative: listens to the other side of a call, transcribes it on the Mac and shows answers from your own documents in a window screen sharing can't see.<br>
+`SWIFT` `MLX WHISPER` `CLAUDE API` `PYSIDE6`
+
+</td>
+<td width="50%" valign="top">
+
 <a href="https://github.com/GianlucaBave/final-data-finance"><img src="assets/shots/credit.jpg" width="100%" alt="Credit Decision: score progression across submissions"></a>
 
 #### [CREDIT DECISION](https://github.com/GianlucaBave/final-data-finance)
@@ -27,6 +37,8 @@ Personal-loan approval model for a Kaggle competition. Tied first at 0.8565 accu
 `CATBOOST` `LIGHTGBM` `XGBOOST`
 
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 
 <a href="https://github.com/dacobri/fynn-talk-to-your-finances"><img src="assets/shots/fynn.jpg" width="100%" alt="Fynn dashboard with the finance copilot chat"></a>
@@ -37,8 +49,6 @@ AI copilot for personal finance: a Claude agent answers money questions with liv
 `NEXT.JS` `FASTAPI` `LANGCHAIN` `CLAUDE`
 
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 
 <a href="https://tunescape.vercel.app"><img src="assets/shots/tunescape-v2.jpg" width="100%" alt="Tunescape artist map with recommendations"></a>
@@ -49,6 +59,8 @@ Interactive atlas of 15,350 artists comparing 8 recommender algorithms side by s
 `PYTHON` `NEXT.JS` `DECK.GL`
 
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 
 <a href="https://dj-assistant-streamlit.vercel.app"><img src="assets/shots/crowdloop.jpg" width="100%" alt="CrowdLoop AI DJ dashboard"></a>
@@ -59,8 +71,6 @@ DJ copilot: a Claude agent drives the deck through tool use over a RAG-indexed t
 `CLAUDE API` `RAG` `WEB AUDIO`
 
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 
 <a href="https://github.com/GianlucaBave/Final-Advanced-Python-Project"><img src="assets/shots/iphone.jpg" width="100%" alt="iPhone Deal-Finder CLI output"></a>
@@ -71,6 +81,8 @@ Fair-value model for second-hand iPhones on 13,745 price records, 8,262 scraped 
 `PYTHON` `SCRAPING` `LIGHTGBM`
 
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 
 <a href="https://seminar-challenge.vercel.app"><img src="assets/shots/cvfit.jpg" width="100%" alt="CV Job Fit Checker landing page"></a>
@@ -81,8 +93,6 @@ Scores a CV against a job offer and suggests how to tailor it.<br>
 `NODE.JS` `GEMINI API`
 
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 
 <a href="https://startup-uni.vercel.app"><img src="assets/shots/unirocket.jpg" width="100%" alt="Unirocket landing page"></a>
@@ -91,16 +101,6 @@ Scores a CV against a job offer and suggests how to tailor it.<br>
 `// SAAS · CODE PRIVATE`<br>
 Platform for student founders: find teammates, pitch ideas, raise funds and watch the market with a built-in radar.<br>
 `NEXT.JS` `SUPABASE` `STRIPE`
-
-</td>
-<td width="50%" valign="top">
-
-<a href="https://artsync-pi.vercel.app"><img src="assets/shots/artsync.jpg" width="100%" alt="ArtSync landing page"></a>
-
-#### [ARTSYNC](https://github.com/GianlucaBave/artsync) · [demo](https://artsync-pi.vercel.app)
-`// PROTOTYPE`<br>
-Marketplace for art commissions with a generative-AI concept preview.<br>
-`NEXT.JS` `TAILWIND`
 
 </td>
 </tr>
