@@ -1,6 +1,15 @@
 <img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/3912425cfed9db34b3ec223652ee79fcf6789b7c/assets/hero.svg" width="100%" alt="BAVE, builder of agents. I build cool stuff with AI agents. Sometimes it's even useful. Risk models, recommenders, a DJ copilot, a finance bot that talks back.">
 
 <p align="center">
+  <a href="https://github.com/GianlucaBave/murmury"><b>Now building: Murmury</b></a>, the open-source call assistant for Mac.<br>
+  Live answers from your own documents during calls, in a window screen sharing doesn't capture.<br>
+  New in v0.1.3: it runs entirely on your Mac with Ollama, no API key.<br><br>
+  <a href="https://github.com/GianlucaBave/murmury"><img src="https://img.shields.io/badge/Star_Murmury-on_GitHub-1fa463?style=for-the-badge&logo=github&logoColor=white" alt="Star Murmury on GitHub"></a>
+  <a href="https://github.com/GianlucaBave/murmury/releases/latest/download/Murmury.dmg"><img src="https://img.shields.io/badge/Download_for_Mac-Murmury.dmg-0e2a1d?style=for-the-badge&logo=apple&logoColor=white" alt="Download Murmury for Mac"></a>
+  <a href="https://github.com/GianlucaBave/murmury/issues?q=is%3Aopen+label%3A%22good+first+issue%22"><img src="https://img.shields.io/badge/Contribute-good_first_issues-1fa463?style=for-the-badge" alt="Good first issues on Murmury"></a>
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/badge/PYTHON-000000?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/SQL-000000?style=for-the-badge&logo=postgresql&logoColor=white" alt="SQL">
   <img src="https://img.shields.io/badge/SCIKIT--LEARN-000000?style=for-the-badge&logo=scikitlearn&logoColor=white" alt="scikit-learn">
@@ -23,8 +32,8 @@
 
 #### [MURMURY](https://github.com/GianlucaBave/murmury) · [site](https://murmury.pages.dev)
 `// OPEN SOURCE · MACOS`<br>
-The open-source Cluely alternative: listens to the other side of a call, transcribes it on the Mac and shows answers from your own documents in a window screen sharing can't see.<br>
-`SWIFT` `MLX WHISPER` `CLAUDE API` `PYSIDE6`
+The open-source Cluely alternative: listens to the other side of a call, transcribes it on the Mac and shows answers from your own documents in a window screen sharing can't see. Runs fully local with Ollama, or with your own AI key.<br>
+`SWIFT` `MLX WHISPER` `OLLAMA` `PYSIDE6`
 
 </td>
 <td width="50%" valign="top">
