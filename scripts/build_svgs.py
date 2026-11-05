@@ -544,8 +544,6 @@ LANES = [("ai", "AI PRODUCTS & LLM AGENTS"), ("web", "WEB & DATA VISUALISATION")
 PROJECTS = [
     dict(key="unirocket", name="Unirocket", date="NOV 2025", lane="web", col=0, tag="LIVE DEMO",
          tech=["Next.js", "Supabase", "Stripe·OAuth"]),
-    dict(key="artsync", name="ArtSync", date="JAN 2026", lane="web", col=1,
-         tech=["Next.js·React", "Tailwind", "GenAI preview"]),
     dict(key="cvfit", name="CV Job Fit Checker", date="JAN 2026", lane="ai", col=1,
          tech=["Node.js", "Gemini API", "PDF parsing"]),
     dict(key="crowdloop", name="CrowdLoop AI", date="FEB 2026", lane="ai", col=2,
@@ -560,14 +558,16 @@ PROJECTS = [
          tech=["Scraping", "LightGBM", "13.7k prices"]),
     dict(key="tunescape", name="Tunescape", date="JUN 2026", lane="web", col=6,
          tech=["8 recommenders", "Next.js", "deck.gl"]),
+    dict(key="murmury", name="Murmury", date="NOV 2026", lane="ai", col=6, tag="OPEN SOURCE",
+         tech=["MLX Whisper", "Ollama·Claude", "Swift·PySide6"]),
 ]
 
 # (from, to, label, label position override or None)
 LINKS = [
-    ("unirocket", "artsync", "NEXT.JS", None),
-    ("artsync", "tunescape", "NEXT.JS·REACT", (790, 372)),
+    ("unirocket", "tunescape", "NEXT.JS·REACT", (790, 372)),
     ("cvfit", "crowdloop", "GEMINI→CLAUDE", None),
     ("crowdloop", "fynn", "CLAUDE AGENTS", None),
+    ("fynn", "murmury", "CLAUDE→LOCAL LLM", None),
     ("fynn", "risk", "TRANSACTIONS", (480, 492)),
     ("risk", "credit", "RISK·XGBOOST", None),
     ("credit", "iphone", "BOOSTING", None),
@@ -590,7 +590,7 @@ def roadmap():
     lane_of = {p["key"]: p["lane"] for p in PROJECTS}
     out = [svg_open(W, H, "Project roadmap: nine projects and the technology they share"),
            section_header("01 · PROJECT ROADMAP", "From analytics to AI products",
-                          "Nine projects, Nov 2025 to Jun 2026. Lines link projects that share technology or domain.", "R", W)]
+                          "Nine projects, Nov 2025 to Nov 2026. Lines link projects that share technology or domain.", "R", W)]
     for key, label in LANES:
         y = lane_y[key]
         lx = 520 if key == "web" else 32  # web label sits in the gap between link lines
@@ -639,7 +639,7 @@ def roadmap():
 
 TECH_ROWS = [
     ("MACHINE LEARNING", [
-        ("Python", {"risk", "credit", "iphone", "fynn"}),
+        ("Python", {"risk", "credit", "iphone", "fynn", "murmury"}),
         ("pandas · scikit-learn", {"risk", "credit", "iphone", "fynn"}),
         ("XGBoost", {"risk", "credit", "iphone"}),
         ("LightGBM", {"credit", "iphone", "fynn"}),
@@ -648,30 +648,33 @@ TECH_ROWS = [
         ("Recommender algorithms", {"tunescape"}),
     ]),
     ("AI & LLM", [
-        ("Claude API · tool use", {"crowdloop", "fynn"}),
+        ("Claude API · tool use", {"crowdloop", "fynn", "murmury"}),
+        ("Local LLMs · Ollama", {"murmury"}),
+        ("Speech-to-text · MLX Whisper", {"murmury"}),
         ("LangChain · text-to-SQL", {"fynn"}),
         ("Gemini API", {"cvfit"}),
         ("RAG · embeddings", {"crowdloop"}),
     ]),
     ("WEB & PRODUCT", [
-        ("Next.js · React · TS", {"unirocket", "artsync", "crowdloop", "fynn", "tunescape"}),
-        ("Tailwind CSS", {"unirocket", "artsync", "fynn", "tunescape"}),
+        ("Next.js · React · TS", {"unirocket", "crowdloop", "fynn", "tunescape"}),
+        ("Tailwind CSS", {"unirocket", "fynn", "tunescape"}),
+        ("Swift · macOS · PySide6", {"murmury"}),
         ("Supabase · Postgres", {"unirocket"}),
         ("Auth.js · OAuth · Stripe", {"unirocket"}),
         ("FastAPI", {"fynn"}),
         ("Node.js · Express", {"cvfit"}),
         ("deck.gl", {"tunescape"}),
         ("Web Audio API", {"crowdloop"}),
-        ("Vercel", {"unirocket", "artsync", "cvfit", "crowdloop", "tunescape"}),
+        ("Vercel", {"unirocket", "cvfit", "crowdloop", "tunescape"}),
     ]),
     ("DATA", [
         ("Web scraping", {"iphone"}),
-        ("PDF parsing", {"cvfit"}),
+        ("PDF parsing", {"cvfit", "murmury"}),
         ("Bank CSV ingestion", {"fynn"}),
     ]),
 ]
 
-SHORT = {"portfolio": "PORTFOLIO", "unirocket": "UNIROCKET", "artsync": "ARTSYNC", "fynn": "FYNN", "cvfit": "CV CHECK", "crowdloop": "CROWDLOOP",
+SHORT = {"portfolio": "PORTFOLIO", "unirocket": "UNIROCKET", "murmury": "MURMURY", "fynn": "FYNN", "cvfit": "CV CHECK", "crowdloop": "CROWDLOOP",
          "risk": "RISK", "credit": "CREDIT", "iphone": "IPHONE", "tunescape": "TUNESCAPE"}
 
 
@@ -723,21 +726,21 @@ CAPABILITIES = [
         ("Recommenders", {"tunescape"}),
     ]),
     ("AI AGENTS", [
-        ("LLM APIs", {"crowdloop", "fynn", "cvfit"}),
+        ("LLM APIs", {"crowdloop", "fynn", "cvfit", "murmury"}),
         ("Tool-use agents", {"crowdloop", "fynn"}),
         ("RAG", {"crowdloop"}),
         ("Text-to-SQL", {"fynn"}),
-        ("Doc parsing", {"cvfit"}),
+        ("Doc parsing", {"cvfit", "murmury"}),
     ]),
     ("PRODUCT", [
-        ("Next.js · React", {"unirocket", "artsync", "crowdloop", "fynn", "tunescape"}),
-        ("Shipping live", {"unirocket", "artsync", "cvfit", "crowdloop", "tunescape"}),
+        ("Next.js · React", {"unirocket", "crowdloop", "fynn", "tunescape"}),
+        ("Shipping live", {"unirocket", "cvfit", "crowdloop", "tunescape", "murmury"}),
         ("APIs", {"cvfit", "fynn"}),
         ("Data viz", {"tunescape", "fynn", "unirocket"}),
         ("Auth · payments", {"unirocket"}),
     ]),
     ("DATA", [
-        ("Python · pandas", {"credit", "risk", "iphone", "fynn", "tunescape"}),
+        ("Python · pandas", {"credit", "risk", "iphone", "fynn", "tunescape", "murmury"}),
         ("Messy data", {"credit", "risk", "iphone"}),
         ("SQL", {"fynn", "unirocket"}),
         ("Scraping", {"iphone"}),

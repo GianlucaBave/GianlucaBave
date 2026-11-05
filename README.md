@@ -28,7 +28,7 @@
 <tr>
 <td width="50%" valign="top">
 
-<a href="https://github.com/GianlucaBave/murmury"><img src="assets/shots/murmury.jpg" width="100%" alt="Murmury answering a question in a floating window during a video call"></a>
+<a href="https://github.com/GianlucaBave/murmury"><img src="assets/shots/murmury-v2.jpg" width="100%" alt="They see your slides, you see the answers: the Murmury window with a live answer from your documents, next to the elf"></a>
 
 #### [MURMURY](https://github.com/GianlucaBave/murmury) · [site](https://murmury.pages.dev)
 `// OPEN SOURCE · MACOS`<br>
