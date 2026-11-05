@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/3912425cfed9db34b3ec223652ee79fcf6789b7c/assets/hero.svg" width="100%" alt="BAVE, builder of agents. I build cool stuff with AI agents. Sometimes it's even useful. Risk models, recommenders, a DJ copilot, a finance bot that talks back.">
+<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/f4a71fb2d9f7577425bb5e0502f6619f6f877f64/assets/hero.svg" width="100%" alt="BAVE, builder of agents. I build cool stuff with AI agents. Sometimes it's even useful. Risk models, recommenders, a DJ copilot, a finance bot that talks back.">
 
 <p align="center">
   <a href="https://github.com/GianlucaBave/murmury"><b>Now building: Murmury</b></a>, the open-source call assistant for Mac.<br>
@@ -20,7 +20,7 @@
   <img src="https://img.shields.io/badge/FASTAPI-000000?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
 </p>
 
-<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/3912425cfed9db34b3ec223652ee79fcf6789b7c/assets/roadmap.svg" width="100%" alt="Project roadmap: nine projects from November 2025 to June 2026 across AI products, web and data visualisation, and machine learning for risk and pricing, with lines linking projects that share technology.">
+<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/f4a71fb2d9f7577425bb5e0502f6619f6f877f64/assets/roadmap.svg" width="100%" alt="Project roadmap: nine projects from November 2025 to June 2026 across AI products, web and data visualisation, and machine learning for risk and pricing, with lines linking projects that share technology.">
 
 ### `( SELECTED WORK )`
 
@@ -115,8 +115,8 @@ Platform for student founders: find teammates, pitch ideas, raise funds and watc
 </tr>
 </table>
 
-<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/3912425cfed9db34b3ec223652ee79fcf6789b7c/assets/techmap.svg" width="100%" alt="Technology map: a grid of tools by project showing the shared foundations, Python and gradient boosting across the machine-learning projects, Next.js and Vercel across the web projects, and the Claude API across the agents.">
+<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/f4a71fb2d9f7577425bb5e0502f6619f6f877f64/assets/techmap.svg" width="100%" alt="Technology map: a grid of tools by project showing the shared foundations, Python and gradient boosting across the machine-learning projects, Next.js and Vercel across the web projects, and the Claude API across the agents.">
 
-<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/3912425cfed9db34b3ec223652ee79fcf6789b7c/assets/capabilities.svg" width="100%" alt="Capabilities: skills in machine learning, AI agents, product, data, and risk and money, each counted by the projects that use it.">
+<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/f4a71fb2d9f7577425bb5e0502f6619f6f877f64/assets/capabilities.svg" width="100%" alt="Capabilities: skills in machine learning, AI agents, product, data, and risk and money, each counted by the projects that use it.">
 
-<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/3912425cfed9db34b3ec223652ee79fcf6789b7c/assets/footer.svg" width="100%" alt="BAVE">
+<img src="https://raw.githubusercontent.com/GianlucaBave/GianlucaBave/f4a71fb2d9f7577425bb5e0502f6619f6f877f64/assets/footer.svg" width="100%" alt="BAVE">
